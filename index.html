@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interrogatives Master - Option 11</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Noto+Serif:wght@700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        .font-dancing { font-family: 'Dancing Script', cursive; }
+        .font-serif-custom { font-family: 'Noto Serif', serif; }
+        .font-times { font-family: 'Times New Roman', Times, serif; }
+
+        .animate-in { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hidden-tab { display: none !important; }
+        .active-tab { display: block !important; }
+        .hidden-content { display: none; }
+    </style>
+</head>
+<body class="bg-gray-100 selection:bg-blue-200 text-gray-900 min-h-screen">
+    
+    <div class="p-4 md:p-8 max-w-3xl mx-auto">
+        <!-- Header -->
+        <header class="mb-10 p-6 md:p-8 rounded-2xl shadow-lg relative overflow-hidden" style="background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);">
+            <div class="absolute bottom-0 left-0 w-full h-1/2 opacity-20 pointer-events-none" style="background: radial-gradient(ellipse at center bottom, rgba(255,255,255,0.8) 0%, transparent 70%);"></div>
+            <div class="absolute -bottom-10 -right-10 w-64 h-64 border-[40px] border-blue-400 rounded-full opacity-10 pointer-events-none"></div>
+
+            <div class="flex flex-col md:flex-row items-center justify-center md:justify-between relative z-10">
+                <div class="text-center md:text-left mb-6 md:mb-0">
+                    <h1 class="text-6xl md:text-[5rem] font-bold text-white leading-none drop-shadow-md font-dancing" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+                        <span class="block mb-[-0.2em] relative left-[-10px]">Vision</span>
+                        <span class="block ml-6 md:ml-12">Quest</span>
+                    </h1>
+                </div>
+
+                <div class="flex flex-col items-center md:items-start text-white">
+                    <div class="text-sm md:text-base font-sans font-bold tracking-[0.2em] opacity-90 mb-1 drop-shadow-sm">
+                        論理・表現 Ⅰ
+                    </div>
+                    <div class="text-xl md:text-2xl font-sans font-medium tracking-widest opacity-90 drop-shadow-sm">
+                        Advanced
+                    </div>
+                    <div class="text-[2rem] md:text-[2.5rem] mt-3 tracking-[0.1em] font-serif-custom uppercase drop-shadow-md"
+                         style="color: transparent; -webkit-text-stroke: 1px white; text-shadow: 0px 0px 8px rgba(255,255,255,0.4);">
+                        Workbook
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center relative z-10 mt-6 md:mt-2">
+                <span class="inline-block bg-white text-[#1e3a8a] px-5 py-2 rounded-full font-black text-sm tracking-widest shadow-md border border-blue-100">
+                    Option 11 疑問詞
+                </span>
+            </div>
+        </header>
+
+        <!-- Tabs Navigation -->
+        <div class="flex flex-col md:flex-row justify-center gap-2 mb-8 bg-white p-1.5 rounded-xl shadow-sm border border-gray-200 w-full md:w-fit mx-auto relative z-20">
+            <button id="tab-btn-examples" onclick="switchTab('examples')" class="flex items-center justify-center px-6 py-3 rounded-lg font-bold text-sm transition-all bg-[#1e3a8a] text-white shadow-md">
+                <i class="ph ph-book-open text-lg mr-2"></i> 例文・表現を学ぶ
+            </button>
+            <button id="tab-btn-exercises" onclick="switchTab('exercises')" class="flex items-center justify-center px-6 py-3 rounded-lg font-bold text-sm transition-all text-gray-500 hover:text-[#1e3a8a] hover:bg-[#f0f4f9]">
+                <i class="ph ph-pen-nib text-lg mr-2"></i> Exercises
+            </button>
+        </div>
+
+        <!-- Main Content Area -->
+        <main id="main-content">
+            
+            <!-- Examples View -->
+            <div id="view-examples" class="active-tab animate-in">
+                <div class="bg-[#eef2f7] border-l-4 border-[#1e3a8a] p-4 rounded-r-lg shadow-sm mb-6">
+                    <p class="text-[#1e3a8a] text-base font-bold tracking-wide">
+                        Option 11 の重要例文です。スピーカーでお手本を聞き、マイクで発音練習をしましょう。
+                    </p>
+                </div>
+                <div id="examples-container"></div>
+            </div>
+
+            <!-- Exercises View -->
+            <div id="view-exercises" class="hidden-tab animate-in">
+                <div class="bg-[#fff4eb] border-l-4 border-[#d97706] p-4 rounded-r-lg mb-6 shadow-sm">
+                    <p class="text-[#b45309] text-base font-bold tracking-wide">
+                        解答を入力し「答え合わせ」を押してください。各問題の最後に発音練習ができます。
+                    </p>
+                </div>
+                <div id="exercises-container"></div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-16 text-center text-sm text-gray-400 pb-8 font-medium">
+            <p>※音声認識はChrome推奨。マイク許可が必要です。</p>
+        </footer>
+    </div>
+
+    <script>
+        // ==========================================
+        // Data Configuration (Option 11)
+        // ==========================================
+        const examplesData = [
+            { id: 1, verb: "Who [Whom] did she marry?", meaning: "彼女は誰と結婚しましたか。", example: "“Who [Whom] did she marry?” “She married John.”", highlight: "Who [Whom]", category: "A 疑問代名詞・疑問形容詞・疑問副詞", explanation: "【疑問代名詞】<br>who/whom「誰が、誰を[に]」、what「何が、何を」、which「どちらが、どちらを」などの疑問代名詞を用います。" },
+            { id: 2, verb: "Who are you going with?", meaning: "（京都へ）誰と行くのですか。", example: "“I’m going to Kyoto this weekend.” “Who are you going with?”", highlight: "Who ... with", category: "A 疑問代名詞・疑問形容詞・疑問副詞", explanation: "【疑問詞が前置詞の目的語のとき】<br>「～と一緒に行く(go with)」のように、前置詞が伴う場合は、〈疑問詞 … 前置詞?〉の形にします。" },
+            { id: 3, verb: "What size", meaning: "どのサイズ", example: "“What size would you like?” “Small, please.”", highlight: "What size", category: "A 疑問代名詞・疑問形容詞・疑問副詞", explanation: "【疑問形容詞】<br>〈what＋名詞〉「どんな～」、〈which＋名詞〉「どの～、どちらの～」、〈whose＋名詞〉「誰の～」などの形をとります。" },
+            { id: 4, verb: "When did you come?", meaning: "いつ来ましたか。", example: "“When did you come?” “Around five.”", highlight: "When", category: "A 疑問代名詞・疑問形容詞・疑問副詞", explanation: "【疑問副詞】<br>when「いつ」、where「どこで[に]」、why「なぜ」、how「どのように、どうやって」などの疑問副詞を用います。" },
+            { id: 5, verb: "How old", meaning: "何歳", example: "“How old is your brother?” “He is twenty.”", highlight: "How old", category: "A 疑問代名詞・疑問形容詞・疑問副詞", explanation: "【How ＋形容詞 [ 副詞 ] …?】<br>「どの程度…」「どのくらい…」と程度を尋ねる表現。<br><span class='text-blue-600 font-bold'>How old …?</span>（年齢）、<span class='text-blue-600 font-bold'>How long …?</span>（長さ）、<span class='text-blue-600 font-bold'>How soon …?</span>（早さ）、<span class='text-blue-600 font-bold'>How often …?</span>（頻度）、<span class='text-blue-600 font-bold'>How many …?</span>（数）、<span class='text-blue-600 font-bold'>How much …?</span>（量・金額）など。" },
+            { id: 6, verb: "Indirect Question", meaning: "誰が窓を割ったのか（間接疑問）", example: "He asked us who had broken the window.", highlight: "who had broken", category: "B 間接疑問", explanation: "【間接疑問】<br>疑問文を文の一部として組み込んだものを間接疑問文といいます。名詞節として文の主語・補語・目的語になります。間接疑問文は倒置をせず〈S’＋V’〉の語順にします。" },
+            { id: 7, verb: "How old do you think...?", meaning: "何歳だと思いますか。", example: "How old do you think he is?", highlight: "How old do you think", category: "C 疑問詞を使った構文", explanation: "【疑問詞＋ do you think …?】<br>疑問詞を使った疑問文にdo you think（思いますか）を組み込んだ形。thinkの後の語順は〈S’＋V’〉。suppose（思う）、expect（予期する）、believeなどもこの形をとります。" },
+            { id: 8, verb: "What ... for?", meaning: "何のために…ですか。", example: "What do you go to college for?", highlight: "What ... for", category: "C 疑問詞を使った構文", explanation: "【What … for?】<br>「何のために…なのか」。Why …? に近い意味ですが、よりくだけた言い方です。" },
+            { id: 9, verb: "How come ...?", meaning: "どうして…なのですか。", example: "How come the library is closed?", highlight: "How come", category: "C 疑問詞を使った構文", explanation: "【How come S＋V?】<br>「どうして…なのか」と理由を尋ねます。How comeの後の語順は平叙文と同じく〈S＋V〉になることに注意してください。" },
+            { id: 10, verb: "What’s S like?", meaning: "Sはどのような人ですか。", example: "What’s Richard like?", highlight: "What’s ... like", category: "C 疑問詞を使った構文", explanation: "【What is S like?】<br>「Sはどのようなもの[人]か」と、性格や性質を尋ねる表現です。" }
+        ];
+
+        const exercisesData = [
+            // Exercise 1: 疑問文作成
+            { id: 101, sectionInstruction: "1. 下線部が答えの中心となる疑問文を作りなさい。", type: "英作文", hint: "UNはUnited Nationsを表す。", exercise: "UN stands for <u class='decoration-blue-500 decoration-4 underline-offset-4 text-gray-900'>United Nations</u>.", answer: "What does UN stand for?", fullExercise: "What does UN stand for?", explanation: "物事を尋ねる疑問代名詞はwhatを使います。UNは三人称単数なので、助動詞doesを用います。" },
+            { id: 102, type: "英作文", hint: "彼らは目的地までの最短ルートをとった。", exercise: "They took <u class='decoration-blue-500 decoration-4 underline-offset-4 text-gray-900'>the shortest route</u> to their destination.", answer: "Which route did they take to their destination?", fullExercise: "Which route did they take to their destination?", explanation: "特定の選択肢から選ぶ場合は疑問形容詞whichを使います。過去形なのでdidを使います。" },
+            { id: 103, type: "英作文", hint: "20人の生徒がそのプログラムに申し込んだ。", exercise: "<u class='decoration-blue-500 decoration-4 underline-offset-4 text-gray-900'>Twenty</u> students applied for the program.", answer: "How many students applied for the program?", fullExercise: "How many students applied for the program?", explanation: "数を尋ねる表現は〈How many + 複数名詞〉です。主語を尋ねる場合は肯定文の語順のままになります。" },
+            { id: 104, type: "英作文", hint: "予算には3000ドル残っている。", exercise: "There is <u class='decoration-blue-500 decoration-4 underline-offset-4 text-gray-900'>3,000 dollars</u> left in the budget.", answer: "How much money is there left in the budget?", fullExercise: "How much money is there left in the budget?", explanation: "金額を尋ねる場合は〈How much money〉を使います。金額は単数扱いします。" },
+            { id: 105, type: "英作文", hint: "歴史の授業は10分後に始まる。", exercise: "The history class will start <u class='decoration-blue-500 decoration-4 underline-offset-4 text-gray-900'>in ten minutes</u>.", answer: "How soon will the history class start?", fullExercise: "How soon will the history class start?", explanation: "「あとどのくらいで」と時間を尋ねる場合は〈How soon〉を使います。" },
+            
+            // Exercise 2: 穴埋め (B, C)
+            { id: 201, sectionInstruction: "2. 日本語に合うように、(　)に適切な語を入れなさい。", type: "穴埋め", hint: "何のためにお金を貯めているのですか。", exercise: "(     ) are you saving money (     )?", answer: "What / for", fullExercise: "What are you saving money for?", explanation: "目的・理由を尋ねる口語的な表現〈What ... for?〉を使います。Why ...? とほぼ同じ意味です。" },
+            { id: 202, type: "穴埋め", hint: "どうして彼は学校を休んだのですか。", exercise: "(     ) (     ) he was absent from school?", answer: "How come", fullExercise: "How come he was absent from school?", explanation: "理由を尋ねる〈How come S + V?〉を使います。後に続く語順が〈S+V〉である点に注意。" },
+            { id: 203, type: "穴埋め", hint: "彼は何が欲しいと思いますか。", exercise: "(     ) (     ) you think he wants?", answer: "What do", fullExercise: "What do you think he wants?", explanation: "思考を表す動詞thinkを用いる場合、疑問詞が文頭に来て〈疑問詞 + do you think + S' + V'?〉となります。" },
+            { id: 204, type: "穴埋め", hint: "どれだけ頻繁に通院しなければならないのか医者に尋ねた。", exercise: "I asked the doctor (     ) (     ) I had to see him.", answer: "how often", fullExercise: "I asked the doctor how often I had to see him.", explanation: "頻度を尋ねる〈how often〉を間接疑問（平叙文の語順）で用います。" },
+            { id: 205, type: "穴埋め", hint: "田舎に住むのがどんな感じかわかりますか。", exercise: "Do you know (     ) it (     ) like to live in the countryside?", answer: "what / is", fullExercise: "Do you know what it is like to live in the countryside?", explanation: "性質や状況を尋ねる〈What is S like?〉の間接疑問です。" },
+            
+            // Exercise 3: 英作文
+            { id: 301, sectionInstruction: "3. 次の日本語を英語に直しなさい。", type: "英作文", hint: "誰がトムと一緒にそこへ行く予定ですか。", exercise: "", answer: "Who will go there with Tom?", fullExercise: "Who will go there with Tom?", explanation: "疑問詞Whoが主語の時は、三人称単数扱いし、語順は平叙文と同じです。" },
+            { id: 302, type: "英作文", hint: "どれぐらいの間、この天気が続くと思いますか。", exercise: "", answer: "How long do you think this weather will last?", fullExercise: "How long do you think this weather will last?", explanation: "期間を尋ねる〈How long〉に〈do you think〉を挿入した形です。last（続く）を用います。" },
+            { id: 303, type: "英作文", hint: "彼は私に、試験が何時に終わるのか教えてくれた。", exercise: "", answer: "He told me what time the exam would end.", fullExercise: "He told me what time the exam would end.", explanation: "間接疑問〈what time + S' + V'〉を用います。主節がtoldなので時制の一致（would）が必要です。" }
+        ];
+
+        // ==========================================
+        // Speech & Audio Utilities
+        // ==========================================
+        let availableVoices = [];
+        window.speechSynthesis.onvoiceschanged = () => {
+            availableVoices = window.speechSynthesis.getVoices();
+        };
+
+        function getEnglishVoice() {
+            if (availableVoices.length === 0) availableVoices = window.speechSynthesis.getVoices();
+            const preferred = ['Google US English', 'Google UK English Female', 'Samantha', 'Alex'];
+            for (const name of preferred) {
+                const voice = availableVoices.find(v => v.name === name);
+                if (voice) return voice;
+            }
+            return availableVoices.find(v => v.lang.startsWith('en-'));
+        }
+
+        window.playAudio = function(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.85;
+                const voice = getEnglishVoice();
+                if (voice) utterance.voice = voice;
+                window.speechSynthesis.speak(utterance);
+            }
+        };
+
+        function calculatePronunciationScore(recognized, target) {
+            const normRec = recognized.toLowerCase().replace(/[^a-z0-9\s']/g, '').trim();
+            const normTgt = target.toLowerCase().replace(/[^a-z0-9\s']/g, '').trim();
+            if (normRec === normTgt) return 100;
+            const recWords = normRec.split(/\s+/).filter(w => w);
+            const tgtWords = normTgt.split(/\s+/).filter(w => w);
+            let matchCount = 0;
+            tgtWords.forEach(word => { if (recWords.includes(word)) matchCount++; });
+            const matchRatio = matchCount / tgtWords.length;
+            let score = 0;
+            if (matchRatio === 1) score = 95;
+            else if (matchRatio >= 0.8) score = 85;
+            else if (matchRatio >= 0.5) score = 70;
+            else if (matchRatio > 0) score = 50;
+            else score = 20;
+            return Math.min(score + (Math.floor(Math.random() * 5)), 100);
+        }
+
+        const recognitions = {};
+        window.startRecording = function(id, text, resultContainerId) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) return;
+            const btnText = document.getElementById(`mic-text-${id}`);
+            const btn = document.getElementById(`mic-btn-${id}`);
+            const resultDiv = document.getElementById(resultContainerId);
+            if(recognitions[id]) try { recognitions[id].stop(); } catch(e){}
+            const recognition = new SpeechRecognition();
+            recognitions[id] = recognition;
+            recognition.lang = 'en-US';
+            recognition.onstart = () => {
+                btnText.innerText = "録音中...";
+                btn.classList.replace('bg-emerald-500', 'bg-red-500');
+                btn.classList.add('animate-pulse');
+                resultDiv.innerHTML = '';
+            };
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                const score = calculatePronunciationScore(transcript, text);
+                resultDiv.innerHTML = `
+                    <div class="mt-2 border-t border-gray-200 pt-3 animate-in">
+                        <p class="text-base text-gray-600">あなたの発音: <span class="font-bold font-times text-lg">"${transcript}"</span></p>
+                        <div class="flex items-center mt-1">
+                            <span class="font-black text-2xl ${score >= 80 ? 'text-emerald-600' : 'text-orange-500'}">${score}点</span>
+                            <span class="ml-2 text-sm font-bold text-gray-400">/ 100</span>
+                        </div>
+                    </div>`;
+            };
+            recognition.onend = () => {
+                btnText.innerText = "発音する";
+                btn.classList.replace('bg-red-500', 'bg-emerald-500');
+                btn.classList.remove('animate-pulse');
+            };
+            recognition.start();
+        };
+
+        // ==========================================
+        // UI Rendering Logic
+        // ==========================================
+        function createPronunciationUI(id, textToRead) {
+            const escapedText = textToRead.replace(/'/g, "\\'");
+            return `
+                <div class="flex flex-col space-y-3 mt-4 bg-gray-50 p-4 rounded-lg">
+                    <div class="flex items-center space-x-3">
+                        <button onclick="playAudio('${escapedText}')" class="flex items-center space-x-1 px-4 py-2 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition text-sm font-bold shadow-sm">
+                            <i class="ph ph-speaker-high text-lg"></i> <span>お手本</span>
+                        </button>
+                        <button id="mic-btn-${id}" onclick="startRecording('${id}', '${escapedText}', 'result-${id}')" class="flex items-center space-x-1 px-4 py-2 bg-emerald-500 text-white rounded-full hover:bg-emerald-600 transition text-sm font-bold shadow-sm">
+                            <i class="ph ph-microphone text-lg"></i> <span id="mic-text-${id}">発音する</span>
+                        </button>
+                    </div>
+                    <div id="result-${id}"></div>
+                </div>`;
+        }
+
+        function renderExamples() {
+            const container = document.getElementById('examples-container');
+            const grouped = {};
+            examplesData.forEach(item => {
+                if (!grouped[item.category]) grouped[item.category] = [];
+                grouped[item.category].push(item);
+            });
+            let html = '';
+            for (const [cat, items] of Object.entries(grouped)) {
+                html += `<h2 class="text-xl md:text-2xl font-bold text-[#1e3a8a] border-b-2 border-blue-200 pb-2 mt-10 mb-5">${cat}</h2>`;
+                items.forEach(item => {
+                    html += `
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-5 hover:shadow-md transition">
+                            <div class="flex items-start justify-between border-b border-gray-50 pb-4 mb-4">
+                                <div>
+                                    <h3 class="text-2xl md:text-3xl font-bold text-[#1e3a8a] font-times">${item.verb}</h3>
+                                    <p class="text-gray-700 font-medium text-lg mt-1">${item.meaning}</p>
+                                </div>
+                            </div>
+                            <p class="text-2xl md:text-3xl font-medium text-gray-800 font-times leading-relaxed">${item.example}</p>
+                            
+                            ${item.explanation ? `
+                            <div class="mt-5 bg-blue-50/50 p-4 md:p-5 rounded-lg border border-blue-100 text-base md:text-lg text-gray-800 leading-relaxed font-medium">
+                                <div class="flex items-start">
+                                    <i class="ph-fill ph-lightbulb text-blue-400 mr-2 mt-1 text-xl"></i> 
+                                    <div>${item.explanation}</div>
+                                </div>
+                            </div>
+                            ` : ''}
+
+                            ${createPronunciationUI(`ex-${item.id}`, item.example)}
+                        </div>`;
+                });
+            }
+            container.innerHTML = html;
+        }
+
+        function renderExercises() {
+            const container = document.getElementById('exercises-container');
+            let html = '';
+            
+            exercisesData.forEach((item, idx) => {
+                // Section Instruction
+                if (item.sectionInstruction) {
+                    html += `
+                        <div class="mt-10 mb-5">
+                            <h3 class="text-xl md:text-2xl font-bold text-[#1e3a8a] border-b-2 border-blue-200 pb-2">${item.sectionInstruction}</h3>
+                        </div>
+                    `;
+                }
+
+                let questionHtml = '';
+                if (item.type === "穴埋め") {
+                    const placeholders = item.answer.split(' / ');
+                    let tempExercise = item.exercise;
+                    placeholders.forEach((_, pIdx) => {
+                        tempExercise = tempExercise.replace("(     )", `<input type="text" id="input-${item.id}-${pIdx}" class="mx-1 border-b-2 border-blue-600 bg-blue-50/50 text-center font-bold text-blue-800 text-xl outline-none w-28 md:w-32 font-times" autocomplete="off">`);
+                    });
+                    questionHtml = `<div class="text-xl md:text-2xl font-times font-medium text-gray-700 mb-6 leading-relaxed">${tempExercise}</div>`;
+                } else {
+                    let exerciseTextHtml = item.exercise ? `<div class="mb-4 text-gray-700 text-xl md:text-2xl font-medium font-times leading-relaxed">${item.exercise}</div>` : '';
+                    questionHtml = `
+                        ${exerciseTextHtml}
+                        <input type="text" id="input-${item.id}" class="w-full border-b-2 border-blue-600 bg-blue-50/50 p-3 font-bold text-blue-800 font-times text-xl outline-none" placeholder="解答を入力" autocomplete="off">
+                    `;
+                }
+
+                // Hint (日本語訳など)
+                let hintHtml = item.hint ? `<p class="text-base md:text-lg font-bold text-gray-600 mb-5 flex items-start"><i class="ph ph-translate-text mr-2 mt-1 text-blue-500 text-xl"></i> ${item.hint}</p>` : '';
+
+                html += `
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 md:p-8 mb-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-[#1e3a8a] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Exercise ${idx + 1}</span>
+                        </div>
+                        
+                        ${hintHtml}
+                        <div id="q-area-${item.id}">${questionHtml}</div>
+                        
+                        <button id="btn-${item.id}" onclick="toggleAnswer(${item.id})" class="mt-6 w-full md:w-auto bg-[#1e3a8a] text-white px-8 py-3 rounded-lg font-bold hover:bg-[#1e40af] transition shadow-md text-base">
+                            答え合わせ / 解答を見る
+                        </button>
+
+                        <div id="ans-panel-${item.id}" class="hidden-content mt-6 bg-blue-50 rounded-xl border border-blue-100 p-6">
+                            <div id="judge-${item.id}" class="text-2xl font-bold font-times mb-5 flex items-center"></div>
+                            <div class="mb-5">
+                                <span class="text-xs font-bold text-blue-500 uppercase tracking-widest block mb-1">Correct Answer</span>
+                                <p class="text-3xl font-bold text-blue-800 font-times">${item.answer}</p>
+                            </div>
+                            <div class="bg-white p-5 rounded-lg border border-blue-100 mb-5 text-base md:text-lg text-gray-800 leading-relaxed font-medium">
+                                <div class="flex items-start">
+                                    <i class="ph-fill ph-lightbulb text-blue-400 mr-2 mt-1 text-xl"></i> 
+                                    <div>${item.explanation}</div>
+                                </div>
+                            </div>
+                            ${createPronunciationUI(`ex-prac-${item.id}`, item.fullExercise)}
+                        </div>
+                    </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        // ==========================================
+        // Interaction Logic
+        // ==========================================
+        window.answerStates = {};
+        window.toggleAnswer = function(id) {
+            const isShowing = window.answerStates[id] || false;
+            const panel = document.getElementById(`ans-panel-${id}`);
+            const btn = document.getElementById(`btn-${id}`);
+            const item = exercisesData.find(ex => ex.id === id);
+            const judge = document.getElementById(`judge-${id}`);
+
+            if (!isShowing) {
+                // Check Answer
+                let userVal = "";
+                if (item.type === "穴埋め") {
+                    const inputs = document.querySelectorAll(`[id^="input-${id}-"]`);
+                    userVal = Array.from(inputs).map(i => i.value.trim()).join(' / ');
+                } else {
+                    userVal = document.getElementById(`input-${id}`).value.trim();
+                }
+
+                const normalize = s => s.toLowerCase().replace(/[\s\.\,\?\!]/g, '');
+                const isCorrect = normalize(userVal) === normalize(item.answer);
+
+                if (userVal === "") judge.innerHTML = `<span class="text-blue-500 flex items-center"><i class="ph-fill ph-info mr-2"></i> Answer Revealed</span>`;
+                else if (isCorrect) judge.innerHTML = `<span class="text-emerald-500 flex items-center"><i class="ph-fill ph-check-circle mr-2"></i> Perfect!</span>`;
+                else judge.innerHTML = `<div class="flex flex-col"><span class="text-red-500 flex items-center"><i class="ph-fill ph-x-circle mr-2"></i> Not quite...</span> <span class="text-sm text-gray-500 block mt-1 font-sans font-normal">You entered: ${userVal}</span></div>`;
+
+                panel.classList.remove('hidden-content');
+                panel.classList.add('animate-in');
+                btn.innerText = "解答を隠す";
+                btn.classList.replace('bg-[#1e3a8a]', 'bg-gray-400');
+                window.answerStates[id] = true;
+            } else {
+                panel.classList.add('hidden-content');
+                btn.innerText = "答え合わせ / 解答を見る";
+                btn.classList.replace('bg-gray-400', 'bg-[#1e3a8a]');
+                window.answerStates[id] = false;
+            }
+        };
+
+        window.switchTab = function(name) {
+            document.getElementById('view-examples').className = name === 'examples' ? 'active-tab animate-in' : 'hidden-tab';
+            document.getElementById('view-exercises').className = name === 'exercises' ? 'active-tab animate-in' : 'hidden-tab';
+            const eb = document.getElementById('tab-btn-examples'), xb = document.getElementById('tab-btn-exercises');
+            const active = ['bg-[#1e3a8a]', 'text-white', 'shadow-md'], inactive = ['text-gray-500', 'hover:bg-[#f0f4f9]'];
+            if (name === 'examples') { eb.classList.add(...active); eb.classList.remove(...inactive); xb.classList.remove(...active); xb.classList.add(...inactive); }
+            else { xb.classList.add(...active); xb.classList.remove(...inactive); eb.classList.remove(...active); eb.classList.add(...inactive); }
+        };
+
+        window.onload = () => { renderExamples(); renderExercises(); };
+    </script>
+</body>
+</html>
+
